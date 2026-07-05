@@ -239,7 +239,10 @@ export function useProducts() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>('coffee');
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>(() => {
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('pos_selectedCategory') : null;
+    return (saved as CategoryType) || 'coffee';
+  });
   const [searchQuery, setSearchQuery] = useState('');
 
   const fetchProductsAndCategories = async () => {
@@ -284,6 +287,10 @@ export function useProducts() {
   useEffect(() => {
     fetchProductsAndCategories();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('pos_selectedCategory', selectedCategory);
+  }, [selectedCategory]);
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
