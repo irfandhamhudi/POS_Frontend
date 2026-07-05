@@ -15,6 +15,7 @@ export interface POSNotification {
   date?: string;
   receiptNumber?: string;
   orderType?: string;
+  source?: string;
   items?: {
     name: string;
     quantity: number;
@@ -210,7 +211,7 @@ export const OrderProvider: React.FC<{ children: React.ReactNode; updateProductS
               toast({
                 title: n.title,
                 description: n.message,
-                variant: n.type === 'cancel' || n.type === 'warning' ? 'destructive' : 'default',
+                variant: n.type === 'cancel' ? 'error' : n.type === 'warning' ? 'amber' : 'default',
               });
             });
             playNotificationSound();
@@ -292,7 +293,7 @@ export const OrderProvider: React.FC<{ children: React.ReactNode; updateProductS
               toast({
                 title: newNotif.title,
                 description: newNotif.message,
-                variant: newNotif.type === 'cancel' || newNotif.type === 'warning' ? 'destructive' : 'default',
+                variant: newNotif.type === 'cancel' ? 'error' : newNotif.type === 'warning' ? 'amber' : 'default',
               });
               playNotificationSound();
               
@@ -534,7 +535,7 @@ export const OrderProvider: React.FC<{ children: React.ReactNode; updateProductS
             toast({
               title: t('notifications.shiftEndedTitle', 'Shift Ended'),
               description: t('notifications.shiftEndedAutoDesc', 'Your shift has been automatically ended because operational hours have ended.'),
-              variant: 'warning',
+              variant: 'amber',
             });
           } else if (res.data.data) {
             setActiveShift(res.data.data);

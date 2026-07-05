@@ -436,13 +436,13 @@ export const exportToExcel = async (
       // Tanggal (Col C to D)
       ws1.mergeCells(`C${rowNum}:D${rowNum}`);
       const cDate = ws1.getCell(rowNum, 3);
-      cDate.value = formatExcelDate(tx.createdAt);
+      cDate.value = formatExcelDate(tx.createdAt || '');
       styleRange(ws1, rowNum, 3, 4, fontSegoeUI(10, false, false, rowFontColor), fill, border, alignCenter);
 
       // Waktu (Col E to F)
       ws1.mergeCells(`E${rowNum}:F${rowNum}`);
       const cTime = ws1.getCell(rowNum, 5);
-      cTime.value = formatExcelTime(tx.createdAt, tx.timestamp);
+      cTime.value = formatExcelTime(tx.createdAt || '', tx.timestamp || '');
       styleRange(ws1, rowNum, 5, 6, fontSegoeUI(10, false, false, rowFontColor), fill, border, alignCenter);
 
       // Customer Name (Cols G to I)
@@ -696,7 +696,7 @@ export const exportToExcel = async (
         // Date Time (M-N merged)
         ws1.mergeCells(`M${rowNum}:N${rowNum}`);
         const cDate = ws1.getCell(rowNum, 13);
-        cDate.value = formatExcelDateTime(co.createdAt);
+        cDate.value = formatExcelDateTime(co.createdAt || '');
         styleRange(ws1, rowNum, 13, 14, fontSegoeUI(9), fill, border, alignCenter);
 
         // Description (O-Q merged)

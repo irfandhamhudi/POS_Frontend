@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useOrder } from '../context/OrderContext';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { CreditCard, Banknote, CheckCircle, Loader2 } from 'lucide-react';
+import { Banknote, CheckCircle, Loader2 } from 'lucide-react';
 import { cn, formatCurrency } from 'src/lib/utils';
 import { toast } from 'src/hooks/use-toast';
 import { useTranslation } from '../../../hooks/useTranslation';

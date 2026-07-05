@@ -22,8 +22,7 @@ export const SalarySlipModal: React.FC<SalarySlipModalProps> = ({ payroll, onClo
   const printRef = useRef<HTMLDivElement>(null);
 
   const p = payroll;
-  const paidDays = p.isPaidHolidays ? p.actualWorkDays + p.holidaysCount : p.actualWorkDays;
-  const baseSalary = paidDays * p.dailySalary;
+  const baseSalary = p.actualWorkDays * p.dailySalary;
 
   const locale = i18n.language === 'id' ? 'id-ID' : 'en-US';
 
@@ -209,15 +208,7 @@ export const SalarySlipModal: React.FC<SalarySlipModalProps> = ({ payroll, onClo
                     <td className="text-right py-2 px-3">{p.actualWorkDays} {t('salary.slipDays', 'days')} x {formatRupiah(p.dailySalary)}</td>
                     <td className="text-right py-2 px-3 font-semibold">{formatRupiah(baseSalary)}</td>
                   </tr>
-                  {p.isPaidHolidays && p.holidaysCount > 0 && (
-                    <tr className="border-b border-border/40 dark:border-zinc-800">
-                      <td className="py-2 px-3">{t('salary.slipPaidHolidays', 'Paid Holidays')}</td>
-                      <td className="text-right py-2 px-3">+{p.holidaysCount} {t('salary.slipDays', 'days')}</td>
-                      <td className="text-right py-2 px-3 font-semibold text-green-700 dark:text-green-400">
-                        +{formatRupiah(p.holidaysCount * p.dailySalary)}
-                      </td>
-                    </tr>
-                  )}
+
                   {(p.overtimeHours || 0) > 0 && (
                     <tr className="border-b border-border/40 dark:border-zinc-800">
                       <td className="py-2 px-3">

@@ -23,13 +23,6 @@ interface TableLayoutProps {
   selectedTableId?: string;
 }
 
-const ZONE_BG: Record<string, string> = {
-  indoor: 'border-blue-200 bg-blue-50/50 dark:border-blue-900/50 dark:bg-blue-950/10',
-  outdoor: 'border-green-200 bg-green-50/50 dark:border-green-900/50 dark:bg-green-950/10',
-  rooftop: 'border-purple-200 bg-purple-50/50 dark:border-purple-900/50 dark:bg-purple-950/10',
-  vip: 'border-amber-200 bg-amber-50/50 dark:border-amber-900/50 dark:bg-amber-950/10',
-};
-
 const TABLE_STATUS_STYLE: Record<string, { bg: string; border: string; icon: string }> = {
   available: {
     bg: 'bg-emerald-50 dark:bg-emerald-950/20',
