@@ -19,6 +19,8 @@ interface AuthContextProps {
   isLoading: boolean;
 }
 
+const TOKEN_KEY = 'pos_token';
+
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -26,6 +28,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
     const checkAuth = async () => {
       try {
         const response = await api.get('/auth/me');
@@ -34,6 +40,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
       } catch {
         setUser(null);
+        localStorage.removeItem(TOKEN_KEY);
+        delete api.defaults.headers.common['Authorization'];
       } finally {
         setIsLoading(false);
       }
@@ -46,6 +54,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const response = await api.post('/auth/login', { username, password });
 
       if (response.data.success) {
+        const token = response.data.token;
+        localStorage.setItem(TOKEN_KEY, token);
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         setUser(response.data.user);
         return { success: true, user: response.data.user };
       }
@@ -59,11 +70,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const logout = async () => {
-    try {
-      await api.post('/auth/logout');
-    } catch {
-      // Ignore errors on logout
-    }
+    localStorage.removeItem(TOKEN_KEY);
+    delete api.defaults.headers.common['Authorization'];
     setUser(null);
   };
 
