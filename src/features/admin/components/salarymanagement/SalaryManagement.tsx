@@ -995,6 +995,7 @@ export const SalaryManagement: React.FC = () => {
                                     endDate: periodEndDate,
                                     dailySalary: p.dailySalary,
                                     actualWorkDays: p.actualWorkDays,
+                                    holidaysCount: 0,
                                     bonus: p.bonus,
                                     bonusNote: p.bonusNote,
                                     overtimeHours: p.overtimeHours,

@@ -471,7 +471,7 @@ export const OrderManagement: React.FC = () => {
                   <TableCell className="text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Calendar className="size-3" />
-                      {tx.date || (i18n.language === 'id' ? 'Hari ini' : 'Today')}, {formatTime(tx.createdAt, tx.timestamp)}
+                      {tx.date || (i18n.language === 'id' ? 'Hari ini' : 'Today')}, {formatTime(tx.createdAt || '', tx.timestamp || '')}
                     </span>
                   </TableCell>
                   <TableCell>
