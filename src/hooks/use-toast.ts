@@ -18,31 +18,12 @@ interface State {
 }
 
 const TOAST_LIMIT = 5
-const TOAST_REMOVE_DELAY = 1000000 // Keep memory clean, but let transitions finish
 
 let count = 0
 
 function genId() {
   count = (count + 1) % Number.MAX_VALUE
   return count.toString()
-}
-
-const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
-
-const addToRemoveQueue = (toastId: string, dispatch: React.Dispatch<Action>) => {
-  if (toastTimeouts.has(toastId)) {
-    return
-  }
-
-  const timeout = setTimeout(() => {
-    toastTimeouts.delete(toastId)
-    dispatch({
-      type: "REMOVE_TOAST",
-      toastId: toastId,
-    })
-  }, TOAST_REMOVE_DELAY)
-
-  toastTimeouts.set(toastId, timeout)
 }
 
 export const reducer = (state: State, action: Action): State => {

@@ -25,12 +25,12 @@ export function useTranslation() {
     options?: Record<string, any>
   ): string {
     if (typeof defaultValueOrOptions === 'object') {
-      return i18n.t(key, defaultValueOrOptions);
+      return i18n.t(key, defaultValueOrOptions) as string;
     }
     if (options) {
-      return i18n.t(key, defaultValueOrOptions, options);
+      return i18n.t(key, defaultValueOrOptions as string, options) as string;
     }
-    return i18n.t(key, defaultValueOrOptions);
+    return i18n.t(key, defaultValueOrOptions as string) as string;
   }
 
   return {
