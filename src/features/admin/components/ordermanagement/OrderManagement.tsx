@@ -615,7 +615,7 @@ export const OrderManagement: React.FC = () => {
                 </div>
                 <div>
                   <span className="font-semibold text-foreground block">{t('orderManagement.invoiceDialog.dateTimeLabel', 'Date & Time:')}</span>
-                  {selectedTx.date || (i18n.language === 'id' ? 'Hari ini' : 'Today')}, {formatTime(selectedTx.createdAt, selectedTx.timestamp)}
+                  {selectedTx.date || (i18n.language === 'id' ? 'Hari ini' : 'Today')}, {formatTime(selectedTx.createdAt || '', selectedTx.timestamp || '')}
                 </div>
                 <div>
                   <span className="font-semibold text-foreground block">{t('orderManagement.invoiceDialog.paymentMethodLabel', 'Payment Method:')}</span>
