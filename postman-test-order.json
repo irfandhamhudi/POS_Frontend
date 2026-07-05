@@ -1,0 +1,40 @@
+{
+  "customerName": "Budi Santoso",
+  "tableNumber": "12",
+  "orderType": "dine_in",
+  "paymentMethod": "cash",
+  "amountPaid": 100000,
+  "subtotal": 90000,
+  "tax": 9000,
+  "total": 99000,
+  "items": [
+    {
+      "product": {
+        "id": "prod_001",
+        "name": "Iced Caramel Macchiato",
+        "price": 35000,
+        "image": "https://example.com/caramel.jpg",
+        "category": "coffee",
+        "available": true,
+        "stockCount": 50
+      },
+      "quantity": 2,
+      "size": "medium",
+      "notes": "Less sugar, extra ice"
+    },
+    {
+      "product": {
+        "id": "prod_002",
+        "name": "French Fries",
+        "price": 20000,
+        "image": "https://example.com/fries.jpg",
+        "category": "snack",
+        "available": true,
+        "stockCount": 100
+      },
+      "quantity": 1,
+      "size": "large",
+      "notes": "Extra saus sambal"
+    }
+  ]
+}

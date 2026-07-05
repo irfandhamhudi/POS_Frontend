@@ -1,0 +1,9 @@
+{
+  "name": "Matcha Latte",
+  "price": 28000,
+  "image": "https://example.com/matcha.jpg",
+  "category": "tea",
+  "available": true,
+  "stockCount": 30,
+  "needRestock": false
+}

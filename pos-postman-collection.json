@@ -1,0 +1,207 @@
+{
+  "info": {
+    "name": "Point of Sale API Collection",
+    "description": "Koleksi API untuk testing semua fitur Point of Sale (POS) system.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@pos.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Menu & Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": ["{{base_url}}"],
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "Get Product by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products?category=coffee",
+              "host": ["{{base_url}}"],
+              "path": ["products"],
+              "query": [
+                { "key": "category", "value": "coffee" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Matcha Latte\",\n  \"price\": 28000,\n  \"image\": \"https://example.com/matcha.jpg\",\n  \"category\": \"tea\",\n  \"available\": true,\n  \"stockCount\": 30,\n  \"needRestock\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": ["{{base_url}}"],
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Matcha Latte Premium\",\n  \"price\": 30000,\n  \"stockCount\": 25\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products/prod_001",
+              "host": ["{{base_url}}"],
+              "path": ["products", "prod_001"]
+            }
+          }
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/prod_001",
+              "host": ["{{base_url}}"],
+              "path": ["products", "prod_001"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Orders & Transactions",
+      "item": [
+        {
+          "name": "Create Transaction (Checkout)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerName\": \"Budi Santoso\",\n  \"tableNumber\": \"12\",\n  \"orderType\": \"dine_in\",\n  \"paymentMethod\": \"cash\",\n  \"amountPaid\": 100000,\n  \"subtotal\": 90000,\n  \"tax\": 9000,\n  \"total\": 99000,\n  \"items\": [\n    {\n      \"product\": { \"id\": \"prod_001\", \"name\": \"Iced Caramel Macchiato\", \"price\": 35000, \"category\": \"coffee\" },\n      \"quantity\": 2,\n      \"size\": \"medium\",\n      \"notes\": \"Less sugar\"\n    },\n    {\n      \"product\": { \"id\": \"prod_002\", \"name\": \"French Fries\", \"price\": 20000, \"category\": \"snack\" },\n      \"quantity\": 1,\n      \"size\": \"large\",\n      \"notes\": \"Extra saus\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/transactions",
+              "host": ["{{base_url}}"],
+              "path": ["transactions"]
+            }
+          }
+        },
+        {
+          "name": "Hold Order (Save to Draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerName\": \"Siti\",\n  \"tableNumber\": \"4\",\n  \"orderType\": \"take_away\",\n  \"total\": 50000,\n  \"cart\": [\n    {\n      \"product\": { \"id\": \"prod_003\", \"name\": \"Nasi Goreng\", \"price\": 50000, \"category\": \"main_course\" },\n      \"quantity\": 1,\n      \"size\": \"medium\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orders/hold",
+              "host": ["{{base_url}}"],
+              "path": ["orders", "hold"]
+            }
+          }
+        },
+        {
+          "name": "Get All Transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/transactions",
+              "host": ["{{base_url}}"],
+              "path": ["transactions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. User Management (Admin)",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            }
+          }
+        },
+        {
+          "name": "Create New User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"kasir_02\",\n  \"password\": \"kasir123\",\n  \"role\": \"cashier\",\n  \"name\": \"Andi\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["users"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

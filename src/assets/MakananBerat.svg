@@ -1,0 +1,15 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fork (left) -->
+  <path d="M10 4V14M10 14C10 16.209 11.791 18 14 18H10M10 18V44" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7 4V12H13V4" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Knife (right) -->
+  <path d="M38 4C38 4 41 8 41 14C41 17.314 38 18 38 18V44" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Plate ellipse -->
+  <ellipse cx="24" cy="30" rx="12" ry="4" stroke="black" stroke-width="3"/>
+  <!-- Bowl dome -->
+  <path d="M12 30C12 23.373 17.373 18 24 18C30.627 18 36 23.373 36 30" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <!-- Steam wisps -->
+  <path d="M20 13C20 13 21 11 20 9C19 7 20 5 20 5" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24 12C24 12 25 10 24 8C23 6 24 4 24 4" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M28 13C28 13 29 11 28 9C27 7 28 5 28 5" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
